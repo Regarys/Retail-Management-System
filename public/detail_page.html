@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Toko Jerjon - Detail Faktur</title>
+	<link rel="icon" type="image" href="Jerjon.png">
+	<link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="page">
+		<header class="header">
+			<div class="brand">
+				<img class="brand-mark" src="/Jerjon.png" alt="logo Jerjon">
+				<div class="brand-text">
+					<h1>Toko Jerjon</h1>
+					<p>Detail Faktur</p>
+				</div>
+			</div>
+			<div class="buttonContainer">
+				<button type="button" class="btn btn-ghost" id="backBtn">Faktur</button>
+				<button type="button" class="btn btn-add" id="productBtn">Product</button>
+			</div>
+		</header>
+
+		<div class="meta-bar">
+			<div class="meta">
+				<span class="meta-label">No Faktur</span>
+				<strong id="metaNo">-</strong>
+			</div>
+			<div class="meta">
+				<span class="meta-label">Dibuat</span>
+				<strong id="metaCreated">-</strong>
+			</div>
+			<div class="meta">
+				<span class="meta-label">Jumlah Item</span>
+				<strong id="metaItems">0</strong>
+			</div>
+		</div>
+
+		<main class="layout">
+
+			<section class="card" aria-labelledby="payTitle">
+				<div class="card-head">
+					<h2 id="payTitle">Pembayaran</h2>
+				</div>
+
+				<form id="paymentForm" novalidate>
+					<div class="field">
+						<label for="customerName">Nama Customer</label>
+						<input type="text" id="customerName" name="customer_name" maxlength="120" autocomplete="off"
+							placeholder="Regarys">
+						<p class="error" id="errCustomer" hidden></p>
+					</div>
+
+					<div class="field">
+						<label for="totalPrice">Total</label>
+						<input type="number" id="totalPrice" name="total_price" min="0" step="1" inputmode="numeric"
+							readonly>
+						<p class="hint">Total dihitung dari detail barang.</p>
+					</div>
+
+					<div class="field">
+						<label for="paid">Bayar</label>
+						<input type="number" id="paid" name="paid" min="0" step="1" inputmode="numeric" placeholder="0">
+						<p class="error" id="errPaid" hidden></p>
+						<p class="hint" id="changeHint">Kembalian: Rp 0</p>
+					</div>
+
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary" id="paySubmit">Simpan</button>
+						<button type="button" class="btn btn-ghost" id="printBtn">Cetak</button>
+					</div>
+				</form>
+			</section>
+
+			<div class="stack">
+
+				<section class="card" aria-labelledby="pickTitle">
+					<div class="card-head">
+						<h2 id="pickTitle">Tambah Barang</h2>
+						<span class="badge badge-edit" id="lineBadge" hidden>Mode ubah</span>
+					</div>
+
+					<div class="field picker">
+						<label for="productSearch">Cari Produk</label>
+						<input type="search" id="productSearch" placeholder=" ketik nama barang..."
+							aria-label="Cari produk" autocomplete="off">
+						<div class="suggest-list" id="suggestList" hidden></div>
+<p class="hint" id="productHint">Pilih dari saran, atau ketik nama barang sendiri di bawah.</p>
+				</div>
+
+				<form id="lineForm" novalidate>
+					<div class="field">
+						<label for="lineProduct">Nama Barang</label>
+						<input type="text" id="lineProduct" name="product_name" maxlength="120" autocomplete="off"
+							placeholder="pilih dari saran atau ketik nama barang">
+					</div>
+
+						<div class="field-row">
+							<div class="field">
+								<label for="lineQty">Qty</label>
+								<input type="number" id="lineQty" name="qty" min="1" step="1" value="1"
+									inputmode="numeric">
+								<p class="error" id="errQty" hidden></p>
+							</div>
+							<div class="field">
+								<label for="linePrice">Harga</label>
+								<input type="number" id="linePrice" name="price" min="0" step="1" inputmode="numeric">
+								<p class="error" id="errPrice" hidden></p>
+							</div>
+						</div>
+
+						<div class="field">
+							<label for="lineTotal">Total</label>
+							<input type="number" id="lineTotal" name="total" min="0" step="1" inputmode="numeric"
+								readonly>
+						</div>
+
+						<div class="form-actions">
+							<button type="submit" class="btn btn-primary" id="lineSubmit">Tambah</button>
+							<button type="button" class="btn btn-ghost" id="lineCancel" hidden>Batal</button>
+						</div>
+					</form>
+				</section>
+
+				<section class="card" aria-labelledby="linesTitle">
+					<div class="card-head">
+						<h2 id="linesTitle">Detail Barang</h2>
+						<span class="badge" id="linesBadge">0 item</span>
+					</div>
+
+					<div class="table-wrap" id="tableWrap">
+						<table>
+							<thead>
+								<tr>
+									<th class="col-no">No</th>
+									<th>Nama Barang</th>
+									<th class="num">Qty</th>
+									<th class="num">Harga</th>
+									<th class="num">Total</th>
+									<th class="col-act">Aksi</th>
+								</tr>
+							</thead>
+							<tbody id="detailBody"></tbody>
+							<tfoot id="detailFoot"></tfoot>
+						</table>
+					</div>
+				</section>
+
+			</div>
+		</main>
+	</div>
+
+	<div class="modal" id="deleteModal" hidden>
+		<div class="modal-backdrop" data-close></div>
+		<div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="deleteTitle">
+			<h3 id="deleteTitle">Hapus barang?</h3>
+			<p id="deleteText"></p>
+			<div class="modal-actions">
+				<button type="button" class="btn btn-ghost" id="deleteCancel">Batal</button>
+				<button type="button" class="btn btn-danger" id="deleteConfirm">Hapus</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+	<script src="/js/detail.js"></script>
+</body>
+
+</html>

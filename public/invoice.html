@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Toko Jerjon - Faktur</title>
+	<link rel="icon" type="image" href="Jerjon.png">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="page">
+		<header class="header">
+			<div class="brand">
+				<img class="brand-mark" src="Jerjon.png" alt="logo Jerjon">
+				<div class="brand-text">
+					<h1>Toko Jerjon</h1>
+					<p>Manajemen Faktur</p>
+				</div>
+			</div>
+			<div class="buttonContainer">
+				<button type="button" class="btn btn-ghost" id="refreshBtn">Refresh</button>
+				<button type="button" class="btn btn-add" id="productBtn">Product</button>
+			</div>
+		</header>
+
+		<main class="layout">
+
+			<section class="card" aria-labelledby="formTitle">
+				<div class="card-head">
+					<h2 id="formTitle">Tambah Faktur</h2>
+				</div>
+
+				<form id="invoiceForm" novalidate>
+					<div class="field">
+						<label for="customerName">Nama Customer</label>
+						<input type="text" id="customerName" name="customer_name" maxlength="120" autocomplete="off"
+							placeholder="Regarys" required>
+						<p class="error" id="errCustomer" hidden></p>
+						<p class="hint">Faktur dibuat dengan total 0. Setelah itu kamu akan diarahkan ke halaman
+							detail untuk menambahkan barang yang dibeli.</p>
+					</div>
+
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary" id="submitBtn">Tambah</button>
+						<button type="reset" class="btn btn-ghost" id="resetBtn">Reset</button>
+					</div>
+				</form>
+			</section>
+
+			<section class="card" aria-labelledby="listTitle">
+				<div class="card-head">
+					<h2 id="listTitle">Daftar Faktur</h2>
+					<span class="badge" id="countBadge">0 Faktur</span>
+				</div>
+
+				<div class="toolbar">
+					<input type="search" id="searchInput" placeholder="Cari nama customer..." aria-label="Cari Customer"
+						autocomplete="off">
+					<select id="filterSelect" aria-label="Filter faktur">
+						<option value="default">Default</option>
+						<option value="unpaid">Belum Bayar</option>
+						<option value="newest">Terbaru</option>
+						<option value="oldest">Terlama</option>
+					</select>
+				</div>
+
+				<div class="table-wrap" id="tableWrap">
+					<table>
+						<thead>
+							<tr>
+								<th class="col-no">No</th>
+								<th>Nama Customer</th>
+								<th class="col-pay">Bayar</th>
+								<th class="col-act">Aksi</th>
+							</tr>
+						</thead>
+						<tbody id="invoiceBody"></tbody>
+					</table>
+				</div>
+			</section>
+
+		</main>
+	</div>
+
+	<div class="modal" id="deleteModal" hidden>
+		<div class="modal-backdrop" data-close></div>
+		<div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="deleteTitle">
+			<h3 id="deleteTitle">Hapus faktur?</h3>
+			<p id="deleteText"></p>
+			<div class="modal-actions">
+				<button type="button" class="btn btn-ghost" id="deleteCancel">Batal</button>
+				<button type="button" class="btn btn-danger" id="deleteConfirm">Hapus</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+	<script src="js/invoice.js"></script>
+</body>
+
+</html>

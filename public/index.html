@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login to Toko Jerjon!</title>
+	<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="page login">
+		<div class="header">
+			<div class="brand">
+				<img src="Jerjon.png" alt="Logo Jerjon">
+				<div class="brand-text">
+					<h1>Toko Jerjon</h1>
+					<p>Login</p>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-head">
+				<h2 class="formTitle">Login</h3>
+			</div>
+			<form id="loginForm" class="loginForm">
+				<label for="username">Username</label>
+				<input type="text" name="username" id="username">
+				<div class="password-input">
+					<label for="username">Password</label>
+					<input type="password" name="password" id="password">
+					<!-- nanti disini mode hide -->
+					<button type="button" class="toggle-password" id="togglePassword" aria-label="Tampilkan password"
+						aria-pressed="false">
+						<!-- Mata terbuka -->
+						<svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+							viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+							<circle cx="12" cy="12" r="3" />
+						</svg>
+
+						<!-- Mata tertutup / password tersembunyi -->
+						<svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+							viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+							stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="m3 3 18 18" />
+							<path d="M10.6 10.6a2 2 0 0 0 2.8 2.8" />
+							<path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.5 0 10 7 10 7a15.8 15.8 0 0 1-4 4.8" />
+							<path d="M6.2 6.2C3.5 8 2 12 2 12s3.5 7 10 7c1 0 2-.2 2.9-.5" />
+						</svg>
+					</button>
+				</div>
+				<button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+			</form>
+		</div>
+	</div>
+
+	<script src="js/login.js">
+
+	</script>
+</body>
+
+</html>
