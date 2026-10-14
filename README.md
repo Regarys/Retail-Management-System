@@ -1,4 +1,4 @@
-<img width="1920" height="786" alt="2026-10-13-113625_hyprshot" src="https://github.com/user-attachments/assets/e07dffcd-5421-4fb7-82dd-aa844ce06698" /># Retail-Management-System
+# Retail-Management-System
 
 ## Overview
 I made this because my mom has a problem of making an invoice. I have an idea to help her out by making this program, at first I am thinking why don't make the whole app, like stock, list price product, and etc.
